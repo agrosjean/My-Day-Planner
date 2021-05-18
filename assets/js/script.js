@@ -2,7 +2,7 @@ var timeDispEl = $("#time-display");
 $(document).ready(function () {
 
 })
-$(".saveBtn").in("click", function () {
+$(".saveBtn").on("click", function () {
 
     // set variables for my values
     var value = $(this).siblings(".userInput").val();
@@ -12,36 +12,54 @@ $(".saveBtn").in("click", function () {
     localStorage.setItem(time, value);
 })
 
-// Create a function to update time as applications runs
+// // Create a function to update time as applications runs
 function displayTime() {
-    var rightNow = moment().format("MMM DD, YYYY [at] hh:mm:ss a");
-    console.log(typeof rightnow);
+    var rightNow = moment().hour();
+    console.log(rightNow);
+
+    $('.time-block').each(function () {
+        var blockHour = parseInt($(this).attr('id').split('-')[1]);
+
+        if (blockHour < rightNow) {
+            $(this).addClass('past');
+
+        } else if (blockHour === rightNow) {
+            $(this).removeClass('past');
+            $(this).addClass('present');
+
+        } else {
+            $(this).removeClass('past');
+            $(this).removeClass('present');
+            $(this).addClass('future');
+        }
+    });
+
 }
 // loop through my timeblocks and return the correct class
 
-$('.time-block').each(funciton() {
-    var blockHour = parseInt($(this).attr('id').split('-')[1]);
+function currentTime() {
+    var displayTime = $("#time-display");
+    var timer = moment().format("h:mm:ss");
+    displayTime.html(timer);
 
-    if(blockHour <displayTime) {
-        $(this).addClass('past');
-
-    } else if(blockHour === displayHour){
-    $(this).removeClass('past');
-    $(this).addClass('present');
-
-} else {
-    $(this).removeClass('past');
-    $(this).removeClass('present');
-    $(this).addClass('future');
 }
-});
+
+currentTime();
+setInterval(currentTime, 1000);
 
 
-timeUpdater();
+
 
 // load things in from local storage. 
 $("#hour-9 .userInput").val(localStorage.getItem("hour-9"));
 $("#hour-10 .userInput").val(localStorage.getItem("hour-10"));
+$("#hour-11 .userInput").val(localStorage.getItem("hour-11"));
+$("#hour-12 .userInput").val(localStorage.getItem("hour-12"));
+$("#hour-1 .userInput").val(localStorage.getItem("hour-1"));
+$("#hour-2 .userInput").val(localStorage.getItem("hour-2"));
+$("#hour-3 .userInput").val(localStorage.getItem("hour-3"));
+$("#hour-4 .userInput").val(localStorage.getItem("hour-4"));
+$("#hour-5 .userInput").val(localStorage.getItem("hour-5"));
 
 
 
