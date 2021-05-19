@@ -81,15 +81,4 @@ body {
    color: white;
   }
 
-.activity { 
-  background-color: powderblue;
-  max-width: 80%;
-}
 
-div {
-  display:block;
-}
-
-section {
-  display: flex;
-}
